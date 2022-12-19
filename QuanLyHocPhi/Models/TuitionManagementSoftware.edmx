@@ -1,0 +1,608 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TuitionManagementSoftwareModels.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="HocKy">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenHocKy" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MaNienKhoa" Type="int" />
+          <Property Name="SoTien" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HocSinh">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenHocSinh" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Lop" Type="int" />
+          <Property Name="NgaySinh" Type="datetime" Nullable="false" />
+          <Property Name="DiaChi" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="TongNo" Type="real" />
+          <Property Name="MaNienKhoa" Type="int" />
+        </EntityType>
+        <EntityType Name="Lop">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenLop" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NienKhoa">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenNienKhoa" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NopHocPhi">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NguoiNhan" Type="int" />
+          <Property Name="MaHocKy" Type="int" />
+          <Property Name="MaHocSinh" Type="int" />
+          <Property Name="ThoiGianNop" Type="datetime" Nullable="false" />
+          <Property Name="NoiDung" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="GhiChu" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SoTien" Type="real" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TaiKhoan">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PassWord" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="HoTen" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DiaChi" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CMND" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__HocKy__MaNienKho__1B0907CE">
+          <End Role="NienKhoa" Type="Self.NienKhoa" Multiplicity="0..1" />
+          <End Role="HocKy" Type="Self.HocKy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NienKhoa">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="HocKy">
+              <PropertyRef Name="MaNienKhoa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HocSinh__Lop__164452B1">
+          <End Role="Lop" Type="Self.Lop" Multiplicity="0..1" />
+          <End Role="HocSinh" Type="Self.HocSinh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lop">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="HocSinh">
+              <PropertyRef Name="Lop" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HocSinh__MaNienK__182C9B23">
+          <End Role="NienKhoa" Type="Self.NienKhoa" Multiplicity="0..1" />
+          <End Role="HocSinh" Type="Self.HocSinh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NienKhoa">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="HocSinh">
+              <PropertyRef Name="MaNienKhoa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__NopHocPhi__MaHoc__1ED998B2">
+          <End Role="HocKy" Type="Self.HocKy" Multiplicity="0..1" />
+          <End Role="NopHocPhi" Type="Self.NopHocPhi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HocKy">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="NopHocPhi">
+              <PropertyRef Name="MaHocKy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__NopHocPhi__MaHoc__1FCDBCEB">
+          <End Role="HocSinh" Type="Self.HocSinh" Multiplicity="0..1" />
+          <End Role="NopHocPhi" Type="Self.NopHocPhi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HocSinh">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="NopHocPhi">
+              <PropertyRef Name="MaHocSinh" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__NopHocPhi__Nguoi__1DE57479">
+          <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="0..1" />
+          <End Role="NopHocPhi" Type="Self.NopHocPhi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TaiKhoan">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="NopHocPhi">
+              <PropertyRef Name="NguoiNhan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="sp_AddHocKy" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tenHocKy" Type="nvarchar" Mode="In" />
+          <Parameter Name="MaNienKhoa" Type="int" Mode="In" />
+          <Parameter Name="SoTien" Type="real" Mode="In" />
+        </Function>
+        <Function Name="sp_AddHocSinh" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tenHocSinh" Type="nvarchar" Mode="In" />
+          <Parameter Name="Lop" Type="int" Mode="In" />
+          <Parameter Name="ngaySinh" Type="datetime" Mode="In" />
+          <Parameter Name="DiaChi" Type="nvarchar" Mode="In" />
+          <Parameter Name="MaNienKhoa" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_AddLop" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tenLop" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_AddNienKhoa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tenNienKhoa" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_AddNopHocPhi" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nguoiNhanTien" Type="int" Mode="In" />
+          <Parameter Name="MaHocKy" Type="int" Mode="In" />
+          <Parameter Name="MaHocSinh" Type="int" Mode="In" />
+          <Parameter Name="ThoiGian" Type="datetime" Mode="In" />
+          <Parameter Name="NoiDung" Type="nvarchar" Mode="In" />
+          <Parameter Name="GhiChu" Type="nvarchar" Mode="In" />
+          <Parameter Name="SoTien" Type="real" Mode="In" />
+        </Function>
+        <Function Name="sp_DeleteHocKy" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="maHocKy" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_DeleteHocSinh" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="maHocSinh" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_DeleteLop" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="malop" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_DeleteNienKhoa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="maNienKhoa" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_DeleteNopHocPhi" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaNopHoc" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_EditHocKy" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tenHocKy" Type="nvarchar" Mode="In" />
+          <Parameter Name="MaNienKhoa" Type="int" Mode="In" />
+          <Parameter Name="SoTien" Type="real" Mode="In" />
+          <Parameter Name="maHocKy" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_EditHocSinh" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tenHocSinh" Type="nvarchar" Mode="In" />
+          <Parameter Name="Lop" Type="int" Mode="In" />
+          <Parameter Name="ngaySinh" Type="datetime" Mode="In" />
+          <Parameter Name="DiaChi" Type="nvarchar" Mode="In" />
+          <Parameter Name="MaNienKhoa" Type="int" Mode="In" />
+          <Parameter Name="maHocSinh" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_EditLop" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="malop" Type="int" Mode="In" />
+          <Parameter Name="tenLop" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_EditNienKhoa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="maNienKhoa" Type="int" Mode="In" />
+          <Parameter Name="tenNienKhoa" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_EditNopHocPhi" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nguoiNhanTien" Type="int" Mode="In" />
+          <Parameter Name="MaHocKy" Type="int" Mode="In" />
+          <Parameter Name="MaHocSinh" Type="int" Mode="In" />
+          <Parameter Name="ThoiGian" Type="datetime" Mode="In" />
+          <Parameter Name="NoiDung" Type="nvarchar" Mode="In" />
+          <Parameter Name="GhiChu" Type="nvarchar" Mode="In" />
+          <Parameter Name="SoTien" Type="real" Mode="In" />
+          <Parameter Name="MaNopHoc" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="TuitionManagementSoftwareModelsStoreContainer">
+          <EntitySet Name="HocKy" EntityType="Self.HocKy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HocSinh" EntityType="Self.HocSinh" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Lop" EntityType="Self.Lop" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NienKhoa" EntityType="Self.NienKhoa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NopHocPhi" EntityType="Self.NopHocPhi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TaiKhoan" EntityType="Self.TaiKhoan" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__HocKy__MaNienKho__1B0907CE" Association="Self.FK__HocKy__MaNienKho__1B0907CE">
+            <End Role="NienKhoa" EntitySet="NienKhoa" />
+            <End Role="HocKy" EntitySet="HocKy" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HocSinh__Lop__164452B1" Association="Self.FK__HocSinh__Lop__164452B1">
+            <End Role="Lop" EntitySet="Lop" />
+            <End Role="HocSinh" EntitySet="HocSinh" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HocSinh__MaNienK__182C9B23" Association="Self.FK__HocSinh__MaNienK__182C9B23">
+            <End Role="NienKhoa" EntitySet="NienKhoa" />
+            <End Role="HocSinh" EntitySet="HocSinh" />
+          </AssociationSet>
+          <AssociationSet Name="FK__NopHocPhi__MaHoc__1ED998B2" Association="Self.FK__NopHocPhi__MaHoc__1ED998B2">
+            <End Role="HocKy" EntitySet="HocKy" />
+            <End Role="NopHocPhi" EntitySet="NopHocPhi" />
+          </AssociationSet>
+          <AssociationSet Name="FK__NopHocPhi__MaHoc__1FCDBCEB" Association="Self.FK__NopHocPhi__MaHoc__1FCDBCEB">
+            <End Role="HocSinh" EntitySet="HocSinh" />
+            <End Role="NopHocPhi" EntitySet="NopHocPhi" />
+          </AssociationSet>
+          <AssociationSet Name="FK__NopHocPhi__Nguoi__1DE57479" Association="Self.FK__NopHocPhi__Nguoi__1DE57479">
+            <End Role="TaiKhoan" EntitySet="TaiKhoan" />
+            <End Role="NopHocPhi" EntitySet="NopHocPhi" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TuitionManagementSoftwareModels" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="HocKy">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenHocKy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MaNienKhoa" Type="Int32" />
+          <Property Name="SoTien" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="NienKhoa" Relationship="Self.FK__HocKy__MaNienKho__1B0907CE" FromRole="HocKy" ToRole="NienKhoa" />
+          <NavigationProperty Name="NopHocPhis" Relationship="Self.FK__NopHocPhi__MaHoc__1ED998B2" FromRole="HocKy" ToRole="NopHocPhi" />
+        </EntityType>
+        <EntityType Name="HocSinh">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenHocSinh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Lop" Type="Int32" />
+          <Property Name="NgaySinh" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DiaChi" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TongNo" Type="Single" />
+          <Property Name="MaNienKhoa" Type="Int32" />
+          <NavigationProperty Name="Lop1" Relationship="Self.FK__HocSinh__Lop__164452B1" FromRole="HocSinh" ToRole="Lop" />
+          <NavigationProperty Name="NienKhoa" Relationship="Self.FK__HocSinh__MaNienK__182C9B23" FromRole="HocSinh" ToRole="NienKhoa" />
+          <NavigationProperty Name="NopHocPhis" Relationship="Self.FK__NopHocPhi__MaHoc__1FCDBCEB" FromRole="HocSinh" ToRole="NopHocPhi" />
+        </EntityType>
+        <EntityType Name="Lop">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenLop" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="HocSinhs" Relationship="Self.FK__HocSinh__Lop__164452B1" FromRole="Lop" ToRole="HocSinh" />
+        </EntityType>
+        <EntityType Name="NienKhoa">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenNienKhoa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="HocKies" Relationship="Self.FK__HocKy__MaNienKho__1B0907CE" FromRole="NienKhoa" ToRole="HocKy" />
+          <NavigationProperty Name="HocSinhs" Relationship="Self.FK__HocSinh__MaNienK__182C9B23" FromRole="NienKhoa" ToRole="HocSinh" />
+        </EntityType>
+        <EntityType Name="NopHocPhi">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NguoiNhan" Type="Int32" />
+          <Property Name="MaHocKy" Type="Int32" />
+          <Property Name="MaHocSinh" Type="Int32" />
+          <Property Name="ThoiGianNop" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="NoiDung" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GhiChu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SoTien" Type="Single" Nullable="false" />
+          <NavigationProperty Name="HocKy" Relationship="Self.FK__NopHocPhi__MaHoc__1ED998B2" FromRole="NopHocPhi" ToRole="HocKy" />
+          <NavigationProperty Name="HocSinh" Relationship="Self.FK__NopHocPhi__MaHoc__1FCDBCEB" FromRole="NopHocPhi" ToRole="HocSinh" />
+          <NavigationProperty Name="TaiKhoan" Relationship="Self.FK__NopHocPhi__Nguoi__1DE57479" FromRole="NopHocPhi" ToRole="TaiKhoan" />
+        </EntityType>
+        <EntityType Name="TaiKhoan">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PassWord" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="HoTen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DiaChi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CMND" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="NopHocPhis" Relationship="Self.FK__NopHocPhi__Nguoi__1DE57479" FromRole="TaiKhoan" ToRole="NopHocPhi" />
+        </EntityType>
+        <Association Name="FK__HocKy__MaNienKho__1B0907CE">
+          <End Role="NienKhoa" Type="Self.NienKhoa" Multiplicity="0..1" />
+          <End Role="HocKy" Type="Self.HocKy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NienKhoa">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="HocKy">
+              <PropertyRef Name="MaNienKhoa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__NopHocPhi__MaHoc__1ED998B2">
+          <End Role="HocKy" Type="Self.HocKy" Multiplicity="0..1" />
+          <End Role="NopHocPhi" Type="Self.NopHocPhi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HocKy">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="NopHocPhi">
+              <PropertyRef Name="MaHocKy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HocSinh__Lop__164452B1">
+          <End Role="Lop" Type="Self.Lop" Multiplicity="0..1" />
+          <End Role="HocSinh" Type="Self.HocSinh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lop">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="HocSinh">
+              <PropertyRef Name="Lop" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HocSinh__MaNienK__182C9B23">
+          <End Role="NienKhoa" Type="Self.NienKhoa" Multiplicity="0..1" />
+          <End Role="HocSinh" Type="Self.HocSinh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NienKhoa">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="HocSinh">
+              <PropertyRef Name="MaNienKhoa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__NopHocPhi__MaHoc__1FCDBCEB">
+          <End Role="HocSinh" Type="Self.HocSinh" Multiplicity="0..1" />
+          <End Role="NopHocPhi" Type="Self.NopHocPhi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HocSinh">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="NopHocPhi">
+              <PropertyRef Name="MaHocSinh" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__NopHocPhi__Nguoi__1DE57479">
+          <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="0..1" />
+          <End Role="NopHocPhi" Type="Self.NopHocPhi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TaiKhoan">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="NopHocPhi">
+              <PropertyRef Name="NguoiNhan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TuitionManagementSoftwareEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="HocKies" EntityType="Self.HocKy" />
+          <EntitySet Name="HocSinhs" EntityType="Self.HocSinh" />
+          <EntitySet Name="Lops" EntityType="Self.Lop" />
+          <EntitySet Name="NienKhoas" EntityType="Self.NienKhoa" />
+          <EntitySet Name="NopHocPhis" EntityType="Self.NopHocPhi" />
+          <EntitySet Name="TaiKhoans" EntityType="Self.TaiKhoan" />
+          <AssociationSet Name="FK__HocKy__MaNienKho__1B0907CE" Association="Self.FK__HocKy__MaNienKho__1B0907CE">
+            <End Role="NienKhoa" EntitySet="NienKhoas" />
+            <End Role="HocKy" EntitySet="HocKies" />
+          </AssociationSet>
+          <AssociationSet Name="FK__NopHocPhi__MaHoc__1ED998B2" Association="Self.FK__NopHocPhi__MaHoc__1ED998B2">
+            <End Role="HocKy" EntitySet="HocKies" />
+            <End Role="NopHocPhi" EntitySet="NopHocPhis" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HocSinh__Lop__164452B1" Association="Self.FK__HocSinh__Lop__164452B1">
+            <End Role="Lop" EntitySet="Lops" />
+            <End Role="HocSinh" EntitySet="HocSinhs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HocSinh__MaNienK__182C9B23" Association="Self.FK__HocSinh__MaNienK__182C9B23">
+            <End Role="NienKhoa" EntitySet="NienKhoas" />
+            <End Role="HocSinh" EntitySet="HocSinhs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__NopHocPhi__MaHoc__1FCDBCEB" Association="Self.FK__NopHocPhi__MaHoc__1FCDBCEB">
+            <End Role="HocSinh" EntitySet="HocSinhs" />
+            <End Role="NopHocPhi" EntitySet="NopHocPhis" />
+          </AssociationSet>
+          <AssociationSet Name="FK__NopHocPhi__Nguoi__1DE57479" Association="Self.FK__NopHocPhi__Nguoi__1DE57479">
+            <End Role="TaiKhoan" EntitySet="TaiKhoans" />
+            <End Role="NopHocPhi" EntitySet="NopHocPhis" />
+          </AssociationSet>
+          <FunctionImport Name="sp_AddHocKy">
+            <Parameter Name="tenHocKy" Mode="In" Type="String" />
+            <Parameter Name="MaNienKhoa" Mode="In" Type="Int32" />
+            <Parameter Name="SoTien" Mode="In" Type="Single" />
+          </FunctionImport>
+          <FunctionImport Name="sp_AddHocSinh">
+            <Parameter Name="tenHocSinh" Mode="In" Type="String" />
+            <Parameter Name="Lop" Mode="In" Type="Int32" />
+            <Parameter Name="ngaySinh" Mode="In" Type="DateTime" />
+            <Parameter Name="DiaChi" Mode="In" Type="String" />
+            <Parameter Name="MaNienKhoa" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_AddLop">
+            <Parameter Name="tenLop" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_AddNienKhoa">
+            <Parameter Name="tenNienKhoa" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_AddNopHocPhi">
+            <Parameter Name="nguoiNhanTien" Mode="In" Type="Int32" />
+            <Parameter Name="MaHocKy" Mode="In" Type="Int32" />
+            <Parameter Name="MaHocSinh" Mode="In" Type="Int32" />
+            <Parameter Name="ThoiGian" Mode="In" Type="DateTime" />
+            <Parameter Name="NoiDung" Mode="In" Type="String" />
+            <Parameter Name="GhiChu" Mode="In" Type="String" />
+            <Parameter Name="SoTien" Mode="In" Type="Single" />
+          </FunctionImport>
+          <FunctionImport Name="sp_DeleteHocKy">
+            <Parameter Name="maHocKy" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_DeleteHocSinh">
+            <Parameter Name="maHocSinh" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_DeleteLop">
+            <Parameter Name="malop" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_DeleteNienKhoa">
+            <Parameter Name="maNienKhoa" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_DeleteNopHocPhi">
+            <Parameter Name="MaNopHoc" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_EditHocKy">
+            <Parameter Name="tenHocKy" Mode="In" Type="String" />
+            <Parameter Name="MaNienKhoa" Mode="In" Type="Int32" />
+            <Parameter Name="SoTien" Mode="In" Type="Single" />
+            <Parameter Name="maHocKy" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_EditHocSinh">
+            <Parameter Name="tenHocSinh" Mode="In" Type="String" />
+            <Parameter Name="Lop" Mode="In" Type="Int32" />
+            <Parameter Name="ngaySinh" Mode="In" Type="DateTime" />
+            <Parameter Name="DiaChi" Mode="In" Type="String" />
+            <Parameter Name="MaNienKhoa" Mode="In" Type="Int32" />
+            <Parameter Name="maHocSinh" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_EditLop">
+            <Parameter Name="malop" Mode="In" Type="Int32" />
+            <Parameter Name="tenLop" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_EditNienKhoa">
+            <Parameter Name="maNienKhoa" Mode="In" Type="Int32" />
+            <Parameter Name="tenNienKhoa" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_EditNopHocPhi">
+            <Parameter Name="nguoiNhanTien" Mode="In" Type="Int32" />
+            <Parameter Name="MaHocKy" Mode="In" Type="Int32" />
+            <Parameter Name="MaHocSinh" Mode="In" Type="Int32" />
+            <Parameter Name="ThoiGian" Mode="In" Type="DateTime" />
+            <Parameter Name="NoiDung" Mode="In" Type="String" />
+            <Parameter Name="GhiChu" Mode="In" Type="String" />
+            <Parameter Name="SoTien" Mode="In" Type="Single" />
+            <Parameter Name="MaNopHoc" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TuitionManagementSoftwareModelsStoreContainer" CdmEntityContainer="TuitionManagementSoftwareEntities">
+          <EntitySetMapping Name="HocKies">
+            <EntityTypeMapping TypeName="TuitionManagementSoftwareModels.HocKy">
+              <MappingFragment StoreEntitySet="HocKy">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="TenHocKy" ColumnName="TenHocKy" />
+                <ScalarProperty Name="MaNienKhoa" ColumnName="MaNienKhoa" />
+                <ScalarProperty Name="SoTien" ColumnName="SoTien" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HocSinhs">
+            <EntityTypeMapping TypeName="TuitionManagementSoftwareModels.HocSinh">
+              <MappingFragment StoreEntitySet="HocSinh">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="TenHocSinh" ColumnName="TenHocSinh" />
+                <ScalarProperty Name="Lop" ColumnName="Lop" />
+                <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
+                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+                <ScalarProperty Name="TongNo" ColumnName="TongNo" />
+                <ScalarProperty Name="MaNienKhoa" ColumnName="MaNienKhoa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lops">
+            <EntityTypeMapping TypeName="TuitionManagementSoftwareModels.Lop">
+              <MappingFragment StoreEntitySet="Lop">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="TenLop" ColumnName="TenLop" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NienKhoas">
+            <EntityTypeMapping TypeName="TuitionManagementSoftwareModels.NienKhoa">
+              <MappingFragment StoreEntitySet="NienKhoa">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="TenNienKhoa" ColumnName="TenNienKhoa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NopHocPhis">
+            <EntityTypeMapping TypeName="TuitionManagementSoftwareModels.NopHocPhi">
+              <MappingFragment StoreEntitySet="NopHocPhi">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="NguoiNhan" ColumnName="NguoiNhan" />
+                <ScalarProperty Name="MaHocKy" ColumnName="MaHocKy" />
+                <ScalarProperty Name="MaHocSinh" ColumnName="MaHocSinh" />
+                <ScalarProperty Name="ThoiGianNop" ColumnName="ThoiGianNop" />
+                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+                <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+                <ScalarProperty Name="SoTien" ColumnName="SoTien" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TaiKhoans">
+            <EntityTypeMapping TypeName="TuitionManagementSoftwareModels.TaiKhoan">
+              <MappingFragment StoreEntitySet="TaiKhoan">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="PassWord" ColumnName="PassWord" />
+                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+                <ScalarProperty Name="CMND" ColumnName="CMND" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_AddHocKy" FunctionName="TuitionManagementSoftwareModels.Store.sp_AddHocKy" />
+          <FunctionImportMapping FunctionImportName="sp_AddHocSinh" FunctionName="TuitionManagementSoftwareModels.Store.sp_AddHocSinh" />
+          <FunctionImportMapping FunctionImportName="sp_AddLop" FunctionName="TuitionManagementSoftwareModels.Store.sp_AddLop" />
+          <FunctionImportMapping FunctionImportName="sp_AddNienKhoa" FunctionName="TuitionManagementSoftwareModels.Store.sp_AddNienKhoa" />
+          <FunctionImportMapping FunctionImportName="sp_AddNopHocPhi" FunctionName="TuitionManagementSoftwareModels.Store.sp_AddNopHocPhi" />
+          <FunctionImportMapping FunctionImportName="sp_DeleteHocKy" FunctionName="TuitionManagementSoftwareModels.Store.sp_DeleteHocKy" />
+          <FunctionImportMapping FunctionImportName="sp_DeleteHocSinh" FunctionName="TuitionManagementSoftwareModels.Store.sp_DeleteHocSinh" />
+          <FunctionImportMapping FunctionImportName="sp_DeleteLop" FunctionName="TuitionManagementSoftwareModels.Store.sp_DeleteLop" />
+          <FunctionImportMapping FunctionImportName="sp_DeleteNienKhoa" FunctionName="TuitionManagementSoftwareModels.Store.sp_DeleteNienKhoa" />
+          <FunctionImportMapping FunctionImportName="sp_DeleteNopHocPhi" FunctionName="TuitionManagementSoftwareModels.Store.sp_DeleteNopHocPhi" />
+          <FunctionImportMapping FunctionImportName="sp_EditHocKy" FunctionName="TuitionManagementSoftwareModels.Store.sp_EditHocKy" />
+          <FunctionImportMapping FunctionImportName="sp_EditHocSinh" FunctionName="TuitionManagementSoftwareModels.Store.sp_EditHocSinh" />
+          <FunctionImportMapping FunctionImportName="sp_EditLop" FunctionName="TuitionManagementSoftwareModels.Store.sp_EditLop" />
+          <FunctionImportMapping FunctionImportName="sp_EditNienKhoa" FunctionName="TuitionManagementSoftwareModels.Store.sp_EditNienKhoa" />
+          <FunctionImportMapping FunctionImportName="sp_EditNopHocPhi" FunctionName="TuitionManagementSoftwareModels.Store.sp_EditNopHocPhi" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TuitionManagementSoftwareModelsStoreContainer" CdmEntityContainer="TuitionManagementSoftwareEntities">
+    <EntitySetMapping Name="HocKies">
+      <EntityTypeMapping TypeName="TuitionManagementSoftwareModels.HocKy">
+        <MappingFragment StoreEntitySet="HocKy">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="TenHocKy" ColumnName="TenHocKy" />
+          <ScalarProperty Name="MaNienKhoa" ColumnName="MaNienKhoa" />
+          <ScalarProperty Name="SoTien" ColumnName="SoTien" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HocSinhs">
+      <EntityTypeMapping TypeName="TuitionManagementSoftwareModels.HocSinh">
+        <MappingFragment StoreEntitySet="HocSinh">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="TenHocSinh" ColumnName="TenHocSinh" />
+          <ScalarProperty Name="Lop" ColumnName="Lop" />
+          <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
+          <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+          <ScalarProperty Name="TongNo" ColumnName="TongNo" />
+          <ScalarProperty Name="MaNienKhoa" ColumnName="MaNienKhoa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Lops">
+      <EntityTypeMapping TypeName="TuitionManagementSoftwareModels.Lop">
+        <MappingFragment StoreEntitySet="Lop">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="TenLop" ColumnName="TenLop" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NienKhoas">
+      <EntityTypeMapping TypeName="TuitionManagementSoftwareModels.NienKhoa">
+        <MappingFragment StoreEntitySet="NienKhoa">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="TenNienKhoa" ColumnName="TenNienKhoa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NopHocPhis">
+      <EntityTypeMapping TypeName="TuitionManagementSoftwareModels.NopHocPhi">
+        <MappingFragment StoreEntitySet="NopHocPhi">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="NguoiNhan" ColumnName="NguoiNhan" />
+          <ScalarProperty Name="MaHocKy" ColumnName="MaHocKy" />
+          <ScalarProperty Name="MaHocSinh" ColumnName="MaHocSinh" />
+          <ScalarProperty Name="ThoiGianNop" ColumnName="ThoiGianNop" />
+          <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+          <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+          <ScalarProperty Name="SoTien" ColumnName="SoTien" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TaiKhoans">
+      <EntityTypeMapping TypeName="TuitionManagementSoftwareModels.TaiKhoan">
+        <MappingFragment StoreEntitySet="TaiKhoan">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="PassWord" ColumnName="PassWord" />
+          <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+          <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+          <ScalarProperty Name="CMND" ColumnName="CMND" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_AddHocKy" FunctionName="TuitionManagementSoftwareModels.Store.sp_AddHocKy" />
+    <FunctionImportMapping FunctionImportName="sp_AddHocSinh" FunctionName="TuitionManagementSoftwareModels.Store.sp_AddHocSinh" />
+    <FunctionImportMapping FunctionImportName="sp_AddLop" FunctionName="TuitionManagementSoftwareModels.Store.sp_AddLop" />
+    <FunctionImportMapping FunctionImportName="sp_AddNienKhoa" FunctionName="TuitionManagementSoftwareModels.Store.sp_AddNienKhoa" />
+    <FunctionImportMapping FunctionImportName="sp_AddNopHocPhi" FunctionName="TuitionManagementSoftwareModels.Store.sp_AddNopHocPhi" />
+    <FunctionImportMapping FunctionImportName="sp_DeleteHocKy" FunctionName="TuitionManagementSoftwareModels.Store.sp_DeleteHocKy" />
+    <FunctionImportMapping FunctionImportName="sp_DeleteHocSinh" FunctionName="TuitionManagementSoftwareModels.Store.sp_DeleteHocSinh" />
+    <FunctionImportMapping FunctionImportName="sp_DeleteLop" FunctionName="TuitionManagementSoftwareModels.Store.sp_DeleteLop" />
+    <FunctionImportMapping FunctionImportName="sp_DeleteNienKhoa" FunctionName="TuitionManagementSoftwareModels.Store.sp_DeleteNienKhoa" />
+    <FunctionImportMapping FunctionImportName="sp_DeleteNopHocPhi" FunctionName="TuitionManagementSoftwareModels.Store.sp_DeleteNopHocPhi" />
+    <FunctionImportMapping FunctionImportName="sp_EditHocKy" FunctionName="TuitionManagementSoftwareModels.Store.sp_EditHocKy" />
+    <FunctionImportMapping FunctionImportName="sp_EditHocSinh" FunctionName="TuitionManagementSoftwareModels.Store.sp_EditHocSinh" />
+    <FunctionImportMapping FunctionImportName="sp_EditLop" FunctionName="TuitionManagementSoftwareModels.Store.sp_EditLop" />
+    <FunctionImportMapping FunctionImportName="sp_EditNienKhoa" FunctionName="TuitionManagementSoftwareModels.Store.sp_EditNienKhoa" />
+    <FunctionImportMapping FunctionImportName="sp_EditNopHocPhi" FunctionName="TuitionManagementSoftwareModels.Store.sp_EditNopHocPhi" />
+  </EntityContainerMapping>
+</Mapping>
